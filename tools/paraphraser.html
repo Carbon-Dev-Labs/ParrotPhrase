@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
+<style>
+    .disabledtext {
+        color: grey;
+    }
+</style>
+
 <body>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -177,45 +183,23 @@
 
         </div>
 
-        <script>
-            async function sendtoPhraser(event) {
-                event.preventDefault();
-
-                const form = event.currentTarget;
-                let formData = new FormData()
-                formData.append('input', document.getElementById('rephraserInput').value)
-
-                const plainFormData = Object.fromEntries(formData.entries());
-                const formDataJsonString = JSON.stringify(plainFormData);
-
-                let get = await fetch("https://parrotphrase.carboncdn.cf/api/rephraser",
-                    {
-                        headers: {
-                            'Content-type': 'application/x-www-form-urlencoded'
-                        },
-                        method: "post",
-                        body: formDataJsonString
-                    });
-                let res = await get.json()
-                console.log(res)
-            }
-
-            const phraserForm = document.getElementById("phraserForm");
-            phraserForm.addEventListener("submit", sendtoPhraser);
-
-        </script>
-
         <br>
+
+        <div class="box" id="isFetchingBox" style="display: none;">
+            <progress class="progress is-small is-primary" max="100">30%</progress>
+        </div>
+
         <br>
 
         <div class="columns">
             <div class="column">
                 <div class="box">
                     <div class="field">
-                        <label class="label">Orignial</label>
+                        <label id="beforeSubmitLabel" class="label disabledtext">Orignial</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="You Haven't Submitted Anything Yet!"
-                                style="resize:none;height: 18rem;" readonly></textarea>
+                            <textarea id="beforeSubmitTextarea" class="textarea"
+                                placeholder="You Haven't Submitted Anything Yet!" style="resize:none;height: 18rem;"
+                                disabled readonly></textarea>
                         </div>
                     </div>
                 </div>
@@ -223,16 +207,60 @@
             <div class="column">
                 <div class="box">
                     <div class="field">
-                        <label class="label">Paraphrased</label>
+                        <label id="afterSubmitLabel" class="label disabledtext">Paraphrased</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="You Haven't Submitted Anything Yet!"
-                                style="resize:none;height: 18rem;" readonly></textarea>
+                            <textarea id="afterSubmitTextarea" class="textarea"
+                                placeholder="You Haven't Submitted Anything Yet!" style="resize:none;height: 18rem;"
+                                disabled readonly></textarea>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        async function sendtoPhraser(event) {
+            event.preventDefault();
+
+            document.getElementById('isFetchingBox').style.display = 'block'
+
+            const form = event.currentTarget;
+            let formData = new FormData()
+            formData.append('input', document.getElementById('rephraserInput').value)
+
+            const plainFormData = Object.fromEntries(formData.entries());
+            const formDataJsonString = JSON.stringify(plainFormData);
+
+            let get = await fetch("https://parrotphrase.carboncdn.cf/api/rephraser",
+                {
+                    headers: {
+                        'Content-type': 'application/x-www-form-urlencoded'
+                    },
+                    method: "post",
+                    body: formDataJsonString
+                });
+            let res = await get.json()
+
+            document.getElementById('isFetchingBox').style.display = 'none'
+
+            console.log(res)
+
+            if (res.status == '200') {
+                document.getElementById('beforeSubmitTextarea').value = document.getElementById('rephraserInput').value
+                document.getElementById('afterSubmitTextarea').value = res.output
+
+                document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
+                document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
+                document.getElementById('beforeSubmitTextarea').disabled = false
+                document.getElementById('afterSubmitTextarea').disabled = false
+            }
+        }
+
+        const phraserForm = document.getElementById("phraserForm");
+        phraserForm.addEventListener("submit", sendtoPhraser);
+
+    </script>
 
 </body>
 
