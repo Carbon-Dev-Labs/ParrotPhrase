@@ -180,17 +180,21 @@
         <script>
             async function sendtoPhraser(event) {
                 event.preventDefault();
+
                 const form = event.currentTarget;
+                let formData = new FormData()
+                formData.append('input', document.getElementById('rephraserInput').value)
+
+                const plainFormData = Object.fromEntries(formData.entries());
+                const formDataJsonString = JSON.stringify(plainFormData);
 
                 let get = await fetch("https://parrotphrase.carboncdn.cf/api/rephraser",
                     {
                         headers: {
-                            'Content-type': 'application/json; charset=UTF-8'
+                            'Content-type': 'application/x-www-form-urlencoded'
                         },
                         method: "post",
-                        body: JSON.stringify({
-                            input: document.getElementById('rephraserInput').value
-                        })
+                        body: formDataJsonString
                     });
                 let res = await get.json()
                 console.log(res)
