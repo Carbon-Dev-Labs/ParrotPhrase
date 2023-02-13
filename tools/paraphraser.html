@@ -89,87 +89,117 @@
     <section class="section">
 
         <div class="columns">
-            <div class="column">
-                <div class="box" style="max-height: 360pxrem;height: 360px;padding: 0;">
 
-                    <div style="padding: 6%;overflow-y: scroll;max-height: 80%;">
-                        <div class="field">
-                            <label class="label">Writing Style</label>
-                            <div class="control">
-                                <div class="select">
-                                    <select>
-                                        <option>Buisness</option>
-                                        <option>Student</option>
-                                    </select>
+            <form id="phraserForm" style="display:flex;width: 100%;height:100%;">
+
+                <div class="column">
+                    <div class="box" style="max-height: 360pxrem;height: 360px;padding: 0;">
+
+                        <div style="padding: 6%;overflow-y: scroll;max-height: 80%;">
+                            <div class="field">
+                                <label class="label">Writing Style</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select>
+                                            <option>Buisness</option>
+                                            <option>Student</option>
+                                        </select>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Writing Tone</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select>
+                                            <option>Formal</option>
+                                            <option>Casual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label class="label">Resource Options</label>
+
+                            <div class="field">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Undo Chat GPT
+                                </label>
+                            </div>
+
+                            <div class="field">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Use Internet Resources
+                                </label>
+                            </div>
+
+                            <div class="field">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Avoid Plagraism
+                                </label>
                             </div>
                         </div>
 
+                        <div style="padding:6%;">
+                            <div class="field is-grouped">
+                                <p class="control">
+                                    <button type="submit" class="button is-primary">
+                                        Submit
+                                    </button>
+                                </p>
+                                <p class="control">
+                                    <a class="button is-light">
+                                        Cancel
+                                    </a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-three-quarters">
+                    <div class="box" style="max-height: 360pxrem;height: 360px;overflow-y: auto;">
                         <div class="field">
-                            <label class="label">Writing Tone</label>
+                            <label class="label">Paraphraser</label>
                             <div class="control">
-                                <div class="select">
-                                    <select>
-                                        <option>Formal</option>
-                                        <option>Casual</option>
-                                    </select>
-                                </div>
+                                <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
+                                    style="resize:none;height: 18rem;" name="body"></textarea>
                             </div>
                         </div>
-
-                        <label class="label">Resource Options</label>
-
-                        <div class="field">
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Undo Chat GPT
-                            </label>
-                        </div>
-
-                        <div class="field">
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Use Internet Resources
-                            </label>
-                        </div>
-
-                        <div class="field">
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Avoid Plagraism
-                            </label>
-                        </div>
-                    </div>
-
-                    <div style="padding:6%;">
-                        <div class="field is-grouped">
-                            <p class="control">
-                                <a class="button is-primary">
-                                    Submit
-                                </a>
-                            </p>
-                            <p class="control">
-                                <a class="button is-light">
-                                    Cancel
-                                </a>
-                            </p>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="column is-three-quarters">
-                <div class="box" style="max-height: 360pxrem;height: 360px;overflow-y: auto;">
-                    <div class="field">
-                        <label class="label">Paraphraser</label>
-                        <div class="control">
-                            <textarea class="textarea" placeholder="Starting Writing Here.."
-                                style="resize:none;height: 18rem;"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            </form>
+
         </div>
+
+        <script>
+            async function sendtoPhraser(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+
+                let get = await fetch("https://parrotphrase.carboncdn.cf/api/rephraser",
+                    {
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8'
+                        },
+                        method: "post",
+                        body: JSON.stringify({
+                            input: document.getElementById('rephraserInput').value
+                        })
+                    });
+                let res = await get.json()
+                console.log(res)
+            }
+
+            const phraserForm = document.getElementById("phraserForm");
+            phraserForm.addEventListener("submit", sendtoPhraser);
+
+        </script>
 
         <br>
         <br>
