@@ -10,12 +10,43 @@ A text pharaphrasing tool to help make your writing sound more natural
 ## Notice
 
 **Parrot Phrase is not released yet** because the project has just been started. We plan to work on it throughout the following months untill we get a public beta.
+
 ## Roadmap
 
 - A working paraphrasing tool.
 
 - Working text editor.
 
+## API Reference
+
+```https
+  https://parrotservice.carboncdn.cf
+```
+
+### Paraphraser example
+
+```https
+  POST /api/paraphraser
+```
+
+```json
+  'Content-type': 'application/x-www-form-urlencoded'
+```
+
+> You have to use the urlencoded form headers otherwise your request will be denied.
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `input` | `string` | **Required**. The text to paraphrase |
+| `tone` | `string` | The type of tone to use when writing |
+| `useai` | `boolean` | Should the paraphraser use AI to write |
+
+### API Limits
+
+Due to this being a free service, there are going to be some limits. There is no paid teir service or anything like such yet and there might not be. We don't know where Parrot might go so bear with us.
+
+- 20 request per hour
+- 3,000 word requests only
 
 ## FAQ
 
