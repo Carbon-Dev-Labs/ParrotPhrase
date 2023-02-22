@@ -96,93 +96,94 @@
 
         <div class="columns">
 
-                <div class="column is-one-quarter">
-                    <form id="phraserForm"></form>
-                    <div class="box" style="max-height: 360pxrem;height: 360px;padding: 0;">
+            <div class="column is-one-quarter">
+                <form id="phraserForm"></form>
+                <div class="box" style="max-height: 360pxrem;height: 360px;padding: 0;">
 
-                        <div style="padding: 6%;overflow-y: scroll;max-height: 80%;">
-                            <div class="field">
-                                <label class="label">Writing Style</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select>
-                                            <option>Buisness</option>
-                                            <option>Student</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Writing Tone</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select>
-                                            <option>Formal</option>
-                                            <option>Casual</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <label class="label">Resource Options</label>
-
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Undo Chat GPT
-                                </label>
-                            </div>
-
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Use Internet Resources
-                                </label>
-                            </div>
-
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Avoid Plagraism
-                                </label>
-                            </div>
-                        </div>
-
-                        <div style="padding:6%;">
-                            <div class="field is-grouped">
-                                <p class="control">
-                                    <button type="submit" class="button is-primary">
-                                        Submit
-                                    </button>
-                                </p>
-                                <p class="control">
-                                    <a class="button is-light">
-                                        Cancel
-                                    </a>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="column is-three-quarters">
-                    <div class="box" style="max-height: 360pxrem;height: 360px;overflow-y: auto;">
+                    <div style="padding: 6%;overflow-y: scroll;max-height: 80%;">
                         <div class="field">
-                            <label class="label">Paraphraser</label>
+                            <label class="label">Writing Style</label>
                             <div class="control">
-                                <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
-                                    style="resize:none;height: 18rem;" name="body"></textarea>
+                                <div class="select">
+                                    <select>
+                                        <option>Buisness</option>
+                                        <option>Student</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="field">
+                            <label class="label">Writing Tone</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select>
+                                        <option>Formal</option>
+                                        <option>Casual</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="label">Resource Options</label>
+
+                        <div class="field">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Undo Chat GPT
+                            </label>
+                        </div>
+
+                        <div class="field">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Use Internet Resources
+                            </label>
+                        </div>
+
+                        <div class="field">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Avoid Plagraism
+                            </label>
+                        </div>
                     </div>
-                    </form>
+
+                    <div style="padding:6%;">
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <button type="submit" class="button is-primary">
+                                    Submit
+                                </button>
+                            </p>
+                            <p class="control">
+                                <a class="button is-light">
+                                    Cancel
+                                </a>
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
+            </div>
+            <div class="column is-three-quarters">
+                <div class="box" style="max-height: 360pxrem;height: 360px;overflow-y: auto;">
+                    <div class="field">
+                        <label class="label">Paraphraser</label>
+                        <div class="control">
+                            <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
+                                style="resize:none;height: 18rem;" name="body"></textarea>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
 
 
         </div>
 
         <br>
+        <hr id="divider">
 
         <div class="box" id="isFetchingBox" style="display: none;">
             <progress class="progress is-small is-primary" max="100">30%</progress>
@@ -223,6 +224,7 @@
             event.preventDefault();
 
             document.getElementById('isFetchingBox').style.display = 'block'
+            document.getElementById('divider').style.display = 'none'
 
             const form = event.currentTarget;
             let formData = new FormData()
@@ -242,6 +244,7 @@
             let res = await get.json()
 
             document.getElementById('isFetchingBox').style.display = 'none'
+            document.getElementById('divider').style.display = 'block'
 
             console.log(res)
 
