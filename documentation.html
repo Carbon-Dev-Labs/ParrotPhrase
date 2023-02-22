@@ -79,92 +79,115 @@
         </div>
     </nav>
 
-    <div class="box has-background-white">
-        <aside class="menu">
-            <p class="menu-label has-text-grey-dark">
-                General
-            </p>
-            <ul class="menu-list">
-                <li>
-                    <a class="has-text-grey-dark">
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a class="has-text-grey-dark">
-                        Customers
-                    </a>
-                </li>
-            </ul>
-            <p class="menu-label has-text-grey-dark">
-                Administration
-            </p>
-            <ul class="menu-list">
-                <li>
-                    <a class="menu-label has-text-grey-dark">
-                        Team Settings
-                    </a>
-                </li>
-                <li>
-                    <a class="is-active">
-                        Manage Your Team
-                    </a>
-                    <ul>
-                        <li>
-                            <a class="has-text-grey-dark">
-                                Members
-                            </a>
-                        </li>
-                        <li>
-                            <a class="has-text-grey-dark">
-                                Plugins
-                            </a>
-                        </li>
-                        <li>
-                            <a class="has-text-grey-dark">
-                                Add a member
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-text-grey-dark">
-                        Invitations
-                    </a>
-                </li>
-                <li>
-                    <a class="has-text-grey-dark">
-                        Cloud Storage Environment Settings
-                    </a>
-                </li>
-                <li>
-                    <a class="has-text-grey-dark">
-                        Authentication
-                    </a>
-                </li>
-            </ul>
-            <p class="menu-label has-text-grey-dark">
-                Transactions
-            </p>
-            <ul class="menu-list">
-                <li>
-                    <a class="has-text-grey-dark">
-                        Payments
-                    </a>
-                </li>
-                <li>
-                    <a class="has-text-grey-dark">
-                        Transfers
-                    </a>
-                </li>
-                <li>
-                    <a class="has-text-grey-dark">
-                        Balance
-                    </a>
-                </li>
-            </ul>
-        </aside>
-    </div>
+    <section class="section">
+    
+        <div class="columns">
+    
+            <form id="phraserForm" style="display:flex;width: 100%;height:100%;">
+    
+                <div class="column">
+                    <div class="box has-background-white">
+                        <aside class="menu">
+                            <p class="menu-label has-text-grey-dark">
+                                General
+                            </p>
+                            <ul class="menu-list">
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Customers
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="menu-label has-text-grey-dark">
+                                Administration
+                            </p>
+                            <ul class="menu-list">
+                                <li>
+                                    <a class="menu-label has-text-grey-dark">
+                                        Team Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="is-active">
+                                        Manage Your Team
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a class="has-text-grey-dark">
+                                                Members
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="has-text-grey-dark">
+                                                Plugins
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="has-text-grey-dark">
+                                                Add a member
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Invitations
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Cloud Storage Environment Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Authentication
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="menu-label has-text-grey-dark">
+                                Transactions
+                            </p>
+                            <ul class="menu-list">
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Payments
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Transfers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="has-text-grey-dark">
+                                        Balance
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+                <div class="column is-three-quarters">
+                    <div class="box" style="max-height: 360pxrem;height: 360px;overflow-y: auto;">
+                        <div class="field">
+                            <label class="label">Paraphraser</label>
+                            <div class="control">
+                                <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
+                                    style="resize:none;height: 18rem;" name="body"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </form>
+    
+        </div>
 
     <footer class="footer">
         <div class="content has-text-centered">
