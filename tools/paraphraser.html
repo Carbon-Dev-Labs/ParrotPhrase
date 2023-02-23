@@ -92,6 +92,17 @@
     </div>
 
     <section class="section">
+        <section class="hero" id="rephraser">
+            <div class="hero-body">
+                <p class="title">
+                    Parrot Phraser
+                </p>
+                <p class="subtitle">
+                    Hero subtitle
+                </p>
+            </div>
+        </section>
+        
         <form id="phraserForm">
             <div class="columns">
 
@@ -182,6 +193,17 @@
         <br>
         <hr id="divider">
 
+        <section class="hero" id="results">
+            <div class="hero-body">
+                <p class="title">
+                    Results
+                </p>
+                <p class="subtitle">
+                    Hero subtitle
+                </p>
+            </div>
+        </section>
+
         <div class="box" id="isFetchingBox" style="display: none;">
             <progress class="progress is-small is-primary" max="100">30%</progress>
         </div>
@@ -220,8 +242,9 @@
         async function sendtoPhraser(event) {
             event.preventDefault();
 
+            history.pushState('', '', '#results');
+
             document.getElementById('isFetchingBox').style.display = 'block'
-            document.getElementById('divider').style.display = 'none'
 
             const form = event.currentTarget;
             let formData = new FormData()
@@ -241,7 +264,6 @@
             let res = await get.json()
 
             document.getElementById('isFetchingBox').style.display = 'none'
-            document.getElementById('divider').style.display = 'block'
 
             console.log(res)
 
