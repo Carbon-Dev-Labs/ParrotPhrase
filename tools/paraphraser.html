@@ -87,22 +87,24 @@
 
     <div class="container mt-2">
         <div class="notification is-primary">
-            <strong>Parrot Phrase is in early beta.</strong> Parrot Phrase is in very early beta, this means that it might not do anything or it might not work because we are in active development.
+            <strong>Parrot Phrase is in early beta.</strong> Parrot Phrase is in very early beta, this means that it
+            might not do anything or it might not work because we are in active development.
         </div>
     </div>
 
+    <section class="hero" id="rephraser">
+        <div class="hero-body">
+            <p class="title">
+                Parrot Phraser
+            </p>
+            <p class="subtitle">
+                Hero subtitle
+            </p>
+        </div>
+    </section>
+
     <section class="section">
-        <section class="hero" id="rephraser">
-            <div class="hero-body">
-                <p class="title">
-                    Parrot Phraser
-                </p>
-                <p class="subtitle">
-                    Hero subtitle
-                </p>
-            </div>
-        </section>
-        
+
         <form id="phraserForm">
             <div class="columns">
 
@@ -190,25 +192,29 @@
             </div>
         </form>
 
-        <br>
-        <hr id="divider">
+    </section>
 
-        <section class="hero" id="results">
-            <div class="hero-body">
-                <p class="title">
-                    Results
-                </p>
-                <p class="subtitle">
-                    Hero subtitle
-                </p>
-            </div>
-        </section>
+    <br>
+    <hr id="divider">
 
-        <div class="box" id="isFetchingBox" style="display: none;">
-            <progress class="progress is-small is-primary" max="100">30%</progress>
+    <section class="hero" id="results">
+        <div class="hero-body">
+            <p class="title">
+                Results
+            </p>
+            <p class="subtitle">
+                Hero subtitle
+            </p>
         </div>
+    </section>
 
-        <br>
+    <div class="box" id="isFetchingBox" style="display: none;">
+        <progress class="progress is-small is-primary" max="100">30%</progress>
+    </div>
+
+    <br>
+
+    <section class="section">
 
         <div class="columns">
             <div class="column">
@@ -236,13 +242,14 @@
                 </div>
             </div>
         </div>
+
     </section>
 
     <script>
         async function sendtoPhraser(event) {
             event.preventDefault();
 
-            history.pushState('', '', '#results');
+            location.hash = "#results";
 
             document.getElementById('isFetchingBox').style.display = 'block'
 
