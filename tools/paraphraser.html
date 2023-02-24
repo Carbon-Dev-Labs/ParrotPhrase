@@ -236,9 +236,10 @@
             const form = event.currentTarget;
             let formData = new FormData()
             formData.append('input', document.getElementById('rephraserInput').value)
-            if (document.getElementById('methodSelect').value == 0) {
+            alert(document.getElementById('methodSelect').value)
+            if (document.getElementById('methodSelect').value == "0") {
                 formData.append('method', '0')
-            } else if (document.getElementById('methodSelect').value == 0) {
+            } else if (document.getElementById('methodSelect').value == "0") {
                 formData.append('method', '1')
             } else {
                 formData.append('method', '0')
