@@ -109,12 +109,12 @@
 
                         <div style="padding: 6%;overflow-y: scroll;max-height: 80%;">
                             <div class="field">
-                                <label class="label">Writing Style</label>
+                                <label class="label">Method</label>
                                 <div class="control">
                                     <div class="select">
-                                        <select>
-                                            <option>Buisness</option>
-                                            <option>Student</option>
+                                        <select id="methodSelect">
+                                            <option value="0">Parrot Phrase AI</option>
+                                            <option value="1"Translation Method</option>
                                         </select>
                                     </div>
                                 </div>
@@ -236,6 +236,13 @@
             const form = event.currentTarget;
             let formData = new FormData()
             formData.append('input', document.getElementById('rephraserInput').value)
+            if (document.getElementById('methodSelect').value == 0) {
+                formData.append('method', '0')
+            } else if (document.getElementById('methodSelect').value == 0) {
+                formData.append('method', '1')
+            } else {
+                formData.append('method', '0')
+            }
 
             const plainFormData = Object.fromEntries(formData.entries());
             const formDataJsonString = JSON.stringify(plainFormData);
