@@ -257,6 +257,7 @@
                 inputval = document.getElementById('rephraserInput').value
             } else if (trytest == true) {
                 inputval = getCookie('trytext')
+                document.getElementById('rephraserInput').value = inputval
             }
 
             document.getElementById('errorbox').innerHTML = ``
@@ -291,7 +292,7 @@
             console.log(res)
 
             if (res.status == '200') {
-                document.getElementById('beforeSubmitTextarea').value = document.getElementById('rephraserInput').value
+                document.getElementById('beforeSubmitTextarea').value = inputval
                 document.getElementById('afterSubmitTextarea').value = res.output
 
                 document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
