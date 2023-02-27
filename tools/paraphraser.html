@@ -106,9 +106,9 @@
             <div class="columns">
 
                 <div class="column is-one-quarter">
-                    <div class="box" style="max-height: 360pxrem;height: 360px;padding: 0;">
+                    <div class="box" style="height: 100%;padding: 0;">
 
-                        <div style="padding: 6%;overflow-y: scroll;max-height: 80%;">
+                        <div style="padding: 6%;overflow-y: scroll;height: 100%;">
                             <div class="field">
                                 <label class="label">Method</label>
                                 <div class="control">
@@ -156,31 +156,27 @@
                                 </label>
                             </div>
                         </div>
-
-                        <div style="padding:6%;">
-                            <div class="field is-grouped">
-                                <p class="control">
-                                    <button type="submit" class="button is-primary">
-                                        Submit
-                                    </button>
-                                </p>
+                    </div>
+                </div>
+                <div class="column is-three-quarters">
+                    <div class="box" style="max-height: 380pxrem;height: 100%;overflow-y: auto;">
+                        <div class="field">
+                            <label class="label">Paraphraser</label>
+                            <div class="control">
+                                <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
+                                    style="resize:none;height: 18rem;margin-bottom: 2%;" name="body"></textarea>
+                            </div>
+                            <div class="field is-grouped" style="float:right">
                                 <p class="control">
                                     <a class="button is-light">
                                         Cancel
                                     </a>
                                 </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="column is-three-quarters">
-                    <div class="box" style="max-height: 360pxrem;height: 360px;overflow-y: auto;">
-                        <div class="field">
-                            <label class="label">Paraphraser</label>
-                            <div class="control">
-                                <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
-                                    style="resize:none;height: 18rem;" name="body"></textarea>
+                                <p class="control">
+                                    <button type="submit" class="button is-primary">
+                                        Submit
+                                    </button>
+                                </p>
                             </div>
                         </div>
                     </div>
