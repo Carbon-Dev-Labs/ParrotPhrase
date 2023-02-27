@@ -95,7 +95,8 @@
     <section class="section" id="rephraser">
         <h1 class="title">Parrot Phraser</h1>
         <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
+            A simple container to divide your page into <strong>sections</strong>, like the one you're currently
+            reading.
         </h2>
     </section>
 
@@ -190,11 +191,15 @@
 
     </section>
 
-    <hr id="divider">
+    <section style="margin-left: 2%;margin-right: 2%;">
+        <div id="errorbox">
 
-    <div class="box" id="isFetchingBox" style="display: none;">
-        <progress class="progress is-small is-primary" max="100">30%</progress>
-    </div>
+        </div>
+
+        <div class="box" id="isFetchingBox" style="display: none;">
+            <progress class="progress is-small is-primary" max="100">30%</progress>
+        </div>
+    </section>
 
     <section class="section">
 
@@ -228,14 +233,38 @@
     </section>
 
     <script>
-        async function sendtoPhraser(event) {
-            event.preventDefault();
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
 
+        async function sendtoPhraser(event, trytest) {
+            let inputval = ''
+
+            if (event != false) {
+                event.preventDefault();
+                inputval = document.getElementById('rephraserInput').value
+            } else if (trytest == true) {
+                inputval = getCookie('trytext')
+            }
+
+            document.getElementById('errorbox').innerHTML = ``
             document.getElementById('isFetchingBox').style.display = 'block'
 
             const form = event.currentTarget;
             let formData = new FormData()
-            formData.append('input', document.getElementById('rephraserInput').value)
+            formData.append('input', inputval)
             if (document.getElementById('methodSelect').value == 0) {
                 formData.append('method', '0')
             } else if (document.getElementById('methodSelect').value == 1) {
@@ -269,7 +298,16 @@
                 document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
                 document.getElementById('beforeSubmitTextarea').disabled = false
                 document.getElementById('afterSubmitTextarea').disabled = false
+            } else if (res.status == '500') {
+                document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
             }
+        }
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        if (urlParams.get('try') == 'true') {
+            sendtoPhraser(false, true)
         }
 
         const phraserForm = document.getElementById("phraserForm");

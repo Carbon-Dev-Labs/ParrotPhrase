@@ -120,12 +120,19 @@
                         <div class="field">
                             <label class="label">Try It Out</label>
                             <div class="control">
-                                <textarea class="textarea" placeholder="Try Writing Something..." style="resize: none;"></textarea>
+                                <textarea id="testTextArea" class="textarea" placeholder="Try Writing Something..." style="resize: none;"></textarea>
                             </div>
                             <p class="help">Visit the <a>Paraphraser</a> for more options</p>
                             <div class="control mt-2 is-justify-content-right">
-                                <button class="button is-primary">Submit</button>
+                                <button id="submitButton" class="button is-primary">Submit</button>
                             </div>
+                            
+                            <script>
+                                document.getElementById('submitButton').onclick = function () {
+                                    document.cookie = "trytext="+document.getElementById('testTextArea').value
+                                    window.location.href="/tools/paraphraser?try=true"
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -151,8 +158,10 @@
                 Support Parrot Phrase
             </p>
             <p class="subtitle">
-                Help us out by donating to buy us a coffee! We try to keep this platform free without ads, we believe that
-                ads can make a page ugly.
+                Help us out by donating to buy us a coffee! We try to keep this platform free without ads.
+                <br>
+                We believe that
+                ads can make a page unprofesional.
             </p>
             <a href="/donate" class="button">Donate</a>
         </div>
