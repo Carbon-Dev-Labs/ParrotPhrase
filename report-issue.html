@@ -17,29 +17,30 @@
             <a href="/" class="navbar-item" href="https://bulma.io">
                 <img src="/assets/images/Logo/ParrotPhraseLogoMedWhite.png" height="40">
             </a>
-    
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
-    
+
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
                 <a href="/" class="navbar-item">
                     Home
                 </a>
-    
+
                 <a href="/documentation" class="navbar-item">
                     Documentation
                 </a>
-    
+
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         Tools
                     </a>
-    
+
                     <div href="/tools/paraphraser" class="navbar-dropdown">
                         <a class="navbar-item">
                             Paraphraser
@@ -54,7 +55,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="field is-grouped">
@@ -78,12 +79,82 @@
         </div>
     </nav>
 
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <p class="title">
+                Report an issue
+            </p>
+            <p class="subtitle">
+                Report an issue with a service or tool on our platform.
+            </p>
+        </div>
+    </section>
+
     <section class="section">
-        <h1 class="title">404; File Not Found :(</h1>
-        <h2 class="subtitle">
-            Looks like we couldn't find that page!
-        </h2>
-        <a href="/" class="button">Go Home</a>
+        <div class="box">
+
+            <form name="reportissue" method="POST" data-netlify="true">
+
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control has-icons-right">
+                    <input class="input" type="text" placeholder="Text input" name="name" required>
+                    <span class="icon is-small is-right">
+                        <i class="bi bi-asterisk"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-right">
+                    <input class="input" type="email" placeholder="Email input" name="email" required>
+                    <span class="icon is-small is-right">
+                        <i class="bi bi-asterisk"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label class="label">Urgency</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="urgency">
+                            <option>Bug Report</option>
+                            <option>Broken Service/Tool</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Textarea" name="message"></textarea>
+                </div>
+            </div>
+            
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" name="agreed">
+                        I agree to the <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light">Cancel</button>
+                </div>
+            </div>
+
+            </form>
+
+        </div>
     </section>
 
     <footer class="footer">
