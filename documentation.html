@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 
 <head>
     <meta charset="utf-8">
@@ -14,20 +14,20 @@
     @media (min-width:768px) {
         .sidemenu {
             position: fixed;
-            
+
         }
     }
 </style>
 
 <body>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a href="/" class="navbar-item" href="https://bulma.io">
                 <img src="/assets/images/Logo/ParrotPhraseLogoMedWhite.png" height="40">
             </a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+            <a id="navbarBurgerMenu" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                 data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -35,7 +35,7 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarMenu" id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
                 <a href="/" class="navbar-item">
                     Home
@@ -94,7 +94,7 @@
 
             <div class="column is-one-quarter">
                 <div class="box has-background-white sidemenu">
-                    <aside class="menu">
+                    <aside class="menu" id="menu-center">
                         <p class="menu-label has-text-grey-dark">
                             Usage
                         </p>
@@ -306,5 +306,33 @@
         </div>
 
 </body>
+
+<script>
+    (function () {
+        'use strict';
+
+        var section = document.querySelectorAll(".section");
+        var sections = {};
+        var i = 0;
+
+        Array.prototype.forEach.call(section, function (e) {
+            sections[e.id] = e.offsetTop;
+        });
+
+        window.onscroll = function () {
+            var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+            for (i in sections) {
+                if (sections[i] <= scrollPosition) {
+                    document.querySelector('.active').setAttribute('class', ' ');
+                    document.querySelector('a[href*=' + i + ']').setAttribute('class', 'active');
+                }
+            }
+        };
+    })();
+
+</script>
+
+<script src="/assets/script/navbar.js"></script>
 
 </html>
