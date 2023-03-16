@@ -223,7 +223,7 @@
                             <label class="label">Paraphraser</label>
                             <div class="control">
                                 <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
-                                    style="resize:none;height: 18rem;margin-bottom: 2%;" name="body"></textarea>
+                                    style="resize:none;height: 18rem;margin-bottom: 2%;border: none; outline: none;" name="body"></textarea>
                             </div>
                             <div class="field is-grouped is-align-items-center" style="float: right;">
                                 <div class="box is-align-items-center"
@@ -235,6 +235,17 @@
                                             cy="33" r="30"></circle>
                                     </svg>
                                     <p style="padding-left: 10px;" id="loadertext">Rephrasing</p>
+                                </div>
+                                <div class="box is-align-items-center"
+                                    style="display: flex;padding: 0%;margin-bottom: 0;margin-top: 0;margin-right: 15px;padding-top: 5px;padding: 8px;">
+                                    <span style="padding-left: 10px;padding-right: 10px;display: flex;" >
+                                        <i class="bi bi-markdown-fill"></i> <p style="margin-left: 6px;">Markdown</p> </span>
+                                    <div style="padding-left: 10px;padding-right: 10px;">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            Formating
+                                        </label>
+                                    </div>
                                 </div>
                                 <p class="control">
                                     <button id="phraseButton" type="submit" class="button is-primary" disabled>
@@ -364,60 +375,60 @@
             const formDataJsonString = JSON.stringify(plainFormData);
 
             let get = await fetch("https://parrotservice.carboncdn.cf/api/rephraser",
-            {
-                headers: {
-                    'Content-type': 'application/x-www-form-urlencoded'
-                },
-                method: "post",
-                body: formDataJsonString
-            }).then(async response => {
-                let res = await response.json()
+                {
+                    headers: {
+                        'Content-type': 'application/x-www-form-urlencoded'
+                    },
+                    method: "post",
+                    body: formDataJsonString
+                }).then(async response => {
+                    let res = await response.json()
 
-                document.getElementById('phraserLoading').addEventListener("animationend", () => {
-                    document.getElementById('phraserLoading').style.display = 'none'
-                }, false);
+                    document.getElementById('phraserLoading').addEventListener("animationend", () => {
+                        document.getElementById('phraserLoading').style.display = 'none'
+                    }, false);
 
-                document.getElementById('phraserLoading').classList.remove('elementFadeIn')
-                document.getElementById('phraserLoading').classList.add('elementFadeOut')
+                    document.getElementById('phraserLoading').classList.remove('elementFadeIn')
+                    document.getElementById('phraserLoading').classList.add('elementFadeOut')
 
-                window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+                    window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
 
-                console.log(res)
+                    console.log(res)
 
-                if (res.status == '200') {
-                    document.getElementById('beforeSubmitTextarea').value = inputval
-                    document.getElementById('afterSubmitTextarea').value = res.output
+                    if (res.status == '200') {
+                        document.getElementById('beforeSubmitTextarea').value = inputval
+                        document.getElementById('afterSubmitTextarea').value = res.output
 
-                    document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
-                    document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
-                    document.getElementById('beforeSubmitTextarea').disabled = false
-                    document.getElementById('afterSubmitTextarea').disabled = false
-                } else if (res.status == '500') {
-                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('beforeSubmitTextarea').disabled = true
-                    document.getElementById('afterSubmitTextarea').disabled = true
-                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
-                } else if (res.status == '403') {
-                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('beforeSubmitTextarea').disabled = true
-                    document.getElementById('afterSubmitTextarea').disabled = true
-                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 403; Access Forbidden.</strong> There was an error processing your request. Looks like you have been <strong>blacklisted</strong> from using Parrot Phrase. <br> <strong>Reason:</strong> "` + res.reason + `"</div>`
-                } else if (res.status == '429') {
-                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('beforeSubmitTextarea').disabled = true
-                    document.getElementById('afterSubmitTextarea').disabled = true
-                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 429; Too  many requests.</strong> There was an error processing your request. Looks like you have been sending too many requests for our servers to process, if you are doing this on purpose please stop or face a blacklist.</div>`
-                } else {
-                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
-                    document.getElementById('beforeSubmitTextarea').disabled = true
-                    document.getElementById('afterSubmitTextarea').disabled = true
-                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
-                }
-            })
+                        document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
+                        document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
+                        document.getElementById('beforeSubmitTextarea').disabled = false
+                        document.getElementById('afterSubmitTextarea').disabled = false
+                    } else if (res.status == '500') {
+                        document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('beforeSubmitTextarea').disabled = true
+                        document.getElementById('afterSubmitTextarea').disabled = true
+                        document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
+                    } else if (res.status == '403') {
+                        document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('beforeSubmitTextarea').disabled = true
+                        document.getElementById('afterSubmitTextarea').disabled = true
+                        document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 403; Access Forbidden.</strong> There was an error processing your request. Looks like you have been <strong>blacklisted</strong> from using Parrot Phrase. <br> <strong>Reason:</strong> "` + res.reason + `"</div>`
+                    } else if (res.status == '429') {
+                        document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('beforeSubmitTextarea').disabled = true
+                        document.getElementById('afterSubmitTextarea').disabled = true
+                        document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 429; Too  many requests.</strong> There was an error processing your request. Looks like you have been sending too many requests for our servers to process, if you are doing this on purpose please stop or face a blacklist.</div>`
+                    } else {
+                        document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                        document.getElementById('beforeSubmitTextarea').disabled = true
+                        document.getElementById('afterSubmitTextarea').disabled = true
+                        document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
+                    }
+                })
         }
 
         const queryString = window.location.search;
