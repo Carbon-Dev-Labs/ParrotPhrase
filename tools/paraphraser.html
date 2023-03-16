@@ -404,6 +404,18 @@
                     document.getElementById('beforeSubmitTextarea').disabled = true
                     document.getElementById('afterSubmitTextarea').disabled = true
                     document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 403; Access Forbidden.</strong> There was an error processing your request. Looks like you have been <strong>blacklisted</strong> from using Parrot Phrase. <br> <strong>Reason:</strong> "` + res.reason + `"</div>`
+                } else if (res.status == '429') {
+                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('beforeSubmitTextarea').disabled = true
+                    document.getElementById('afterSubmitTextarea').disabled = true
+                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 429; Too  many requests.</strong> There was an error processing your request. Looks like you have been sending too many requests for our servers to process, if you are doing this on purpose please stop or face a blacklist. "` + res.reason + `"</div>`
+                } else {
+                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('beforeSubmitTextarea').disabled = true
+                    document.getElementById('afterSubmitTextarea').disabled = true
+                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
                 }
             })
         }
