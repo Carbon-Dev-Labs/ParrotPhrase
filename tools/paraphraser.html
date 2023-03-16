@@ -393,8 +393,16 @@
                     document.getElementById('beforeSubmitTextarea').disabled = false
                     document.getElementById('afterSubmitTextarea').disabled = false
                 } else if (res.status == '500') {
+                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('beforeSubmitTextarea').disabled = true
+                    document.getElementById('afterSubmitTextarea').disabled = true
                     document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
                 } else if (res.status == '403') {
+                    document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('afterSubmitLabel').classList.add('disabledtext')
+                    document.getElementById('beforeSubmitTextarea').disabled = true
+                    document.getElementById('afterSubmitTextarea').disabled = true
                     document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 403; Access Forbidden.</strong> There was an error processing your request. Looks like you have been <strong>blacklisted</strong> from using Parrot Phrase. <br> <strong>Reason:</strong> "` + res.reason + `"</div>`
                 }
             })
