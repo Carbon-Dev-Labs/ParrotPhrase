@@ -364,37 +364,40 @@
             const formDataJsonString = JSON.stringify(plainFormData);
 
             let get = await fetch("https://parrotservice.carboncdn.cf/api/rephraser",
-                {
-                    headers: {
-                        'Content-type': 'application/x-www-form-urlencoded'
-                    },
-                    method: "post",
-                    body: formDataJsonString
-                });
-            let res = await get.json()
+            {
+                headers: {
+                    'Content-type': 'application/x-www-form-urlencoded'
+                },
+                method: "post",
+                body: formDataJsonString
+            }).then(async response => {
+                let res = await response.json()
 
-            document.getElementById('phraserLoading').addEventListener("animationend", () => {
-                document.getElementById('phraserLoading').style.display = 'none'
-            }, false);
+                document.getElementById('phraserLoading').addEventListener("animationend", () => {
+                    document.getElementById('phraserLoading').style.display = 'none'
+                }, false);
 
-            document.getElementById('phraserLoading').classList.remove('elementFadeIn')
-            document.getElementById('phraserLoading').classList.add('elementFadeOut')
+                document.getElementById('phraserLoading').classList.remove('elementFadeIn')
+                document.getElementById('phraserLoading').classList.add('elementFadeOut')
 
-            window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+                window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
 
-            console.log(res)
+                console.log(res)
 
-            if (res.status == '200') {
-                document.getElementById('beforeSubmitTextarea').value = inputval
-                document.getElementById('afterSubmitTextarea').value = res.output
+                if (res.status == '200') {
+                    document.getElementById('beforeSubmitTextarea').value = inputval
+                    document.getElementById('afterSubmitTextarea').value = res.output
 
-                document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
-                document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
-                document.getElementById('beforeSubmitTextarea').disabled = false
-                document.getElementById('afterSubmitTextarea').disabled = false
-            } else if (res.status == '500') {
-                document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
-            }
+                    document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
+                    document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
+                    document.getElementById('beforeSubmitTextarea').disabled = false
+                    document.getElementById('afterSubmitTextarea').disabled = false
+                } else if (res.status == '500') {
+                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 500; Internal Server Error.</strong> There was an error processing your request. The function you are trying to use might not work right now. </div>`
+                } else if (res.status == '403') {
+                    document.getElementById('errorbox').innerHTML = `<div class="notification is-danger"> <button class="delete"></button> <strong>Code 403; Access Forbidden.</strong> There was an error processing your request. Looks like you have been <strong>blacklisted</strong> from using Parrot Phrase. <br> <strong>Reason:</strong> "` + res.reason + `"</div>`
+                }
+            })
         }
 
         const queryString = window.location.search;
