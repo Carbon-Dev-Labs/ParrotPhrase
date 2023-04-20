@@ -169,6 +169,20 @@
 
                         <div style="padding: 6%;overflow-y: scroll;height: 100%;">
                             <div class="field">
+                                <label class="label">Parrot Version</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="versionSelect">
+                                            <option value="0" disabled>v0.1</option>
+                                            <option value="0" disabled>v0.2</option>
+                                            <option value="0" disabled>v0.3</option>
+                                            <option value="1.0">v1.0</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
                                 <label class="label">Method</label>
                                 <div class="control">
                                     <div class="select">
@@ -353,6 +367,13 @@
                 formData.append('method', '1')
             } else {
                 formData.append('method', '0')
+            }
+
+            formData.append('version', inputval)
+            if (document.getElementById('versionSelect').value == 1) {
+                formData.append('version', '1')
+            } else {
+                formData.append('version', '1')
             }
 
             document.getElementById('methodSelect').addEventListener("change", () => {
