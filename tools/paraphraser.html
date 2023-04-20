@@ -185,27 +185,37 @@
 
         <div class="utilitescontainer">
             <form id="phraserForm">
-                <div class="columns blurdisable" id="boxesContainer" style="max-height: 28rem;">
+                <div class="columns blurdisable" id="boxesContainer">
 
                     <div class="column is-one-quarter">
                         <div class="box" style="height: 100%;padding: 0;">
 
                             <div style="padding: 6%;overflow-y: scroll;height: 26rem;">
                                 <div class="field">
-                                    <label class="label"
-                                        style="font-size: 16px;display: flex; align-items:center;"><span
-                                            class="tag is-dark" id="qUsageTag">3000</span> <span
-                                            style="padding-left: 6px;">Requests Left Today</span></label>
+                                    <label class="label" style="font-size: 16px;display: flex; align-items:center;">
+                                        <span class="tag is-dark" id="qUsageTag">3000</span>
+                                        <span style="padding-left: 6px;">Requests left</span>
+                                    </label>
                                     <progress id="quotaProgress" class="progress" value="100" max="100">15%</progress>
                                 </div>
 
                                 <hr>
 
                                 <div class="field">
-                                    <label class="label">Parrot Version</label>
-                                    <div class="control">
-                                        <div class="select">
-                                            <select id="versionSelect">
+                                    <label class="label" style="display: flex; align-items:center;">
+                                        <svg style="margin-right: 6px;" xmsns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-git-commit">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <line x1="3" x2="9" y1="12" y2="12"></line>
+                                            <line x1="15" x2="21" y1="12" y2="12"></line>
+                                        </svg>
+                                        Parrot Version
+                                    </label>
+                                    <div style="width: 100%;" class="control">
+                                        <div style="width: 100%;" class="select">
+                                            <select style="width: 100%;" id="versionSelect">
                                                 <option value="0" disabled>v0.1</option>
                                                 <option value="0" disabled>v0.2</option>
                                                 <option value="0" disabled>v0.3</option>
@@ -216,10 +226,22 @@
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Method</label>
-                                    <div class="control">
-                                        <div class="select">
-                                            <select id="methodSelect">
+                                    <label class="label" style="display: flex; align-items:center;">
+                                        <svg style="margin-right: 6px;" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-bot">
+                                            <rect width="18" height="10" x="3" y="11" rx="2"></rect>
+                                            <circle cx="12" cy="5" r="2"></circle>
+                                            <path d="M12 7v4"></path>
+                                            <line x1="8" x2="8" y1="16" y2="16"></line>
+                                            <line x1="16" x2="16" y1="16" y2="16"></line>
+                                        </svg>
+                                        Method
+                                    </label>
+                                    <div style="width: 100%;" class="control">
+                                        <div style="width: 100%;" class="select">
+                                            <select style="width: 100%;" id="methodSelect">
                                                 <option value="0">Parrot Phrase AI</option>
                                                 <option value="1">Translation Method</option>
                                             </select>
@@ -228,10 +250,23 @@
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Translation Language</label>
-                                    <div class="control">
-                                        <div class="select">
-                                            <select id="langSelect" disabled>
+                                    <label class="label" style="display: flex; align-items:center;">
+                                        <svg style="margin-right: 6px;" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-languages">
+                                            <path d="m5 8 6 6"></path>
+                                            <path d="m4 14 6-6 2-3"></path>
+                                            <path d="M2 5h12"></path>
+                                            <path d="M7 2h1"></path>
+                                            <path d="m22 22-5-10-5 10"></path>
+                                            <path d="M14 18h6"></path>
+                                        </svg>
+                                        Translation Language
+                                    </label>
+                                    <div style="width: 100%;" class="control">
+                                        <div style="width: 100%;" class="select">
+                                            <select style="width: 100%;" id="langSelect" disabled>
                                                 <option value="es">English to Spanish</option>
                                                 <option value="de">English to German</option>
                                             </select>
@@ -287,15 +322,16 @@
                                     <div class="box is-align-items-center"
                                         style="display: flex;padding: 0%;margin-bottom: 0;margin-top: 0;margin-right: 15px;padding-top: 5px;padding: 8px;">
                                         <span style="padding-left: 10px;padding-right: 10px;display: flex;">
-                                            <i class="bi bi-markdown-fill"></i>
-                                            <p style="margin-left: 6px;">Markdown</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-align-left">
+                                                <line x1="21" x2="3" y1="6" y2="6"></line>
+                                                <line x1="15" x2="3" y1="12" y2="12"></line>
+                                                <line x1="17" x2="3" y1="18" y2="18"></line>
+                                            </svg>
+                                            <p style="margin-left: 6px;"><span id="wordsused">3000</span>/<span id="wordsavaliable">3000</span> Words Left</p>
                                         </span>
-                                        <div style="padding-left: 10px;padding-right: 10px;">
-                                            <label class="checkbox">
-                                                <input type="checkbox">
-                                                Formating
-                                            </label>
-                                        </div>
                                     </div>
                                     <p class="control">
                                         <button id="phraseButton" type="submit" class="button is-primary" disabled>
@@ -306,6 +342,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <script>
+                        let maxwords = 3000
+                        document.getElementById('rephraserInput').addEventListener('input', () => {
+                            let wordcount = document.getElementById('rephraserInput').value.split(' ').length
+                            document.getElementById('wordsused').innerText = maxwords - wordcount -1
+                            
+                        })
+                    </script>
 
                 </div>
                 <div class="centered" id="loaderContainer">
@@ -377,36 +422,36 @@
         }
 
         function openToUse() {
-                document.getElementById('boxesContainer').classList.remove('blurdisable')
-                document.getElementById('loaderContainer').classList.add('elementFadeOut')
-                setTimeout(() => { document.getElementById('loaderContainer').classList.add('hidebox') }, 1000);
+            document.getElementById('boxesContainer').classList.remove('blurdisable')
+            document.getElementById('loaderContainer').classList.add('elementFadeOut')
+            setTimeout(() => { document.getElementById('loaderContainer').classList.add('hidebox') }, 1000);
+        }
+
+        function getPercent(x, y) {
+            return (x / y) * 100;
+        }
+
+        const servicesocket = new WebSocket(
+            "wss://parrotservice.carboncdn.cf/client/services",
+            "protocolOne"
+        );
+
+        servicesocket.onopen = (event) => {
+            console.log('[Service Socket Woker] Connected to Server')
+            servicesocket.send("fetch|quota");
+        };
+
+        servicesocket.onmessage = (event) => {
+            let msgdata = event.data.toString();
+            let msg = msgdata.split('|')
+            if (msg[0] == 'quota') {
+                console.log('You Have Used ' + msg[2] + '/' + msg[1] + ' of Your Request Quota')
+                document.getElementById('qUsageTag').innerText = msg[1] - msg[2]
+                let percentvalue = 100 - getPercent(msg[2], msg[1])
+                document.getElementById('quotaProgress').setAttribute('value', percentvalue)
+                openToUse()
             }
-
-            function getPercent(x, y) {
-                return (x / y) * 100;
-            }
-
-            const servicesocket = new WebSocket(
-                "wss://parrotservice.carboncdn.cf/client/services",
-                "protocolOne"
-            );
-
-            servicesocket.onopen = (event) => {
-                console.log('[Service Socket Woker] Connected to Server')
-                servicesocket.send("fetch|quota");
-            };
-
-            servicesocket.onmessage = (event) => {
-                let msgdata = event.data.toString();
-                let msg = msgdata.split('|')
-                if (msg[0] == 'quota') {
-                    console.log('You Have Used ' + msg[2] + '/' + msg[1] + ' of Your Request Quota')
-                    document.getElementById('qUsageTag').innerText = msg[1] - msg[2]
-                    let percentvalue = 100 - getPercent(msg[2], msg[1])
-                    document.getElementById('quotaProgress').setAttribute('value', percentvalue)
-                    openToUse()
-                }
-            };
+        };
 
         document.getElementById('rephraserInput').addEventListener("input", () => {
             if (document.getElementById('rephraserInput').value.length == 0) {
