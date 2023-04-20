@@ -161,118 +161,160 @@
 
     <section class="section">
 
-        <form id="phraserForm">
-            <div class="columns">
+        <style>
+            .blurdisable {
+                filter: blur(3px);
+                pointer-events: none;
+            }
 
-                <div class="column is-one-quarter">
-                    <div class="box" style="height: 100%;padding: 0;">
+            .hidebox {
+                display: none;
+            }
 
-                        <div style="padding: 6%;overflow-y: scroll;height: 100%;">
-                            <div class="field">
-                                <label class="label">Parrot Version</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select id="versionSelect">
-                                            <option value="0" disabled>v0.1</option>
-                                            <option value="0" disabled>v0.2</option>
-                                            <option value="0" disabled>v0.3</option>
-                                            <option value="1.0">v1.0</option>
-                                        </select>
+            .utilitescontainer {
+                position: relative;
+            }
+
+            .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+
+        <div class="utilitescontainer">
+            <form id="phraserForm">
+                <div class="columns blurdisable" id="boxesContainer" style="max-height: 28rem;">
+
+                    <div class="column is-one-quarter">
+                        <div class="box" style="height: 100%;padding: 0;">
+
+                            <div style="padding: 6%;overflow-y: scroll;height: 26rem;">
+                                <div class="field">
+                                    <label class="label"
+                                        style="font-size: 16px;display: flex; align-items:center;"><span
+                                            class="tag is-dark" id="qUsageTag">3000</span> <span
+                                            style="padding-left: 6px;">Requests Left Today</span></label>
+                                    <progress id="quotaProgress" class="progress" value="100" max="100">15%</progress>
+                                </div>
+
+                                <hr>
+
+                                <div class="field">
+                                    <label class="label">Parrot Version</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select id="versionSelect">
+                                                <option value="0" disabled>v0.1</option>
+                                                <option value="0" disabled>v0.2</option>
+                                                <option value="0" disabled>v0.3</option>
+                                                <option value="1.0">v1.0</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="field">
-                                <label class="label">Method</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select id="methodSelect">
-                                            <option value="0">Parrot Phrase AI</option>
-                                            <option value="1">Translation Method</option>
-                                        </select>
+                                <div class="field">
+                                    <label class="label">Method</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select id="methodSelect">
+                                                <option value="0">Parrot Phrase AI</option>
+                                                <option value="1">Translation Method</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="field">
-                                <label class="label">Translation Language</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select id="langSelect" disabled>
-                                            <option value="es">English to Spanish</option>
-                                            <option value="de">English to German</option>
-                                        </select>
+                                <div class="field">
+                                    <label class="label">Translation Language</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select id="langSelect" disabled>
+                                                <option value="es">English to Spanish</option>
+                                                <option value="de">English to German</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <label class="label">Resource Options</label>
+                                <label class="label">Resource Options</label>
 
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Undo Chat GPT
-                                </label>
-                            </div>
+                                <div class="field">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        Undo Chat GPT
+                                    </label>
+                                </div>
 
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Use Internet Resources
-                                </label>
-                            </div>
+                                <div class="field">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        Use Internet Resources
+                                    </label>
+                                </div>
 
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Avoid Plagraism
-                                </label>
+                                <div class="field">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        Avoid Plagraism
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="column is-three-quarters">
-                    <div class="box" style="max-height: 380pxrem;height: 100%;overflow-y: auto;">
-                        <div class="field">
-                            <label class="label">Paraphraser</label>
-                            <div class="control">
-                                <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
-                                    style="resize:none;height: 18rem;margin-bottom: 2%;border: none; outline: none;" name="body"></textarea>
-                            </div>
-                            <div class="field is-grouped is-align-items-center" style="float: right;">
-                                <div class="box is-align-items-center"
-                                    style="display: none;padding: 0%;margin-bottom: 0;margin-top: 0;margin-right: 15px;padding-top: 5px;padding: 8px;"
-                                    id="phraserLoading">
-                                    <svg class="spinner" width="30px" height="22px" viewBox="0 0 66 66"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33"
-                                            cy="33" r="30"></circle>
-                                    </svg>
-                                    <p style="padding-left: 10px;" id="loadertext">Rephrasing</p>
+                    <div class="column is-three-quarters">
+                        <div class="box" style="height: 26rem;overflow-y: auto;">
+                            <div class="field">
+                                <label class="label">Paraphraser</label>
+                                <div class="control">
+                                    <textarea id="rephraserInput" class="textarea" placeholder="Starting Writing Here.."
+                                        style="resize:none;height: 18rem;margin-bottom: 2%;border: none; outline: none;"
+                                        name="body"></textarea>
                                 </div>
-                                <div class="box is-align-items-center"
-                                    style="display: flex;padding: 0%;margin-bottom: 0;margin-top: 0;margin-right: 15px;padding-top: 5px;padding: 8px;">
-                                    <span style="padding-left: 10px;padding-right: 10px;display: flex;" >
-                                        <i class="bi bi-markdown-fill"></i> <p style="margin-left: 6px;">Markdown</p> </span>
-                                    <div style="padding-left: 10px;padding-right: 10px;">
-                                        <label class="checkbox">
-                                            <input type="checkbox">
-                                            Formating
-                                        </label>
+                                <div class="field is-grouped is-align-items-center" style="float: right;">
+                                    <div class="box is-align-items-center"
+                                        style="display: none;padding: 0%;margin-bottom: 0;margin-top: 0;margin-right: 15px;padding-top: 5px;padding: 8px;"
+                                        id="phraserLoading">
+                                        <svg class="spinner" width="30px" height="22px" viewBox="0 0 66 66"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round"
+                                                cx="33" cy="33" r="30"></circle>
+                                        </svg>
+                                        <p style="padding-left: 10px;" id="loadertext">Rephrasing</p>
                                     </div>
+                                    <div class="box is-align-items-center"
+                                        style="display: flex;padding: 0%;margin-bottom: 0;margin-top: 0;margin-right: 15px;padding-top: 5px;padding: 8px;">
+                                        <span style="padding-left: 10px;padding-right: 10px;display: flex;">
+                                            <i class="bi bi-markdown-fill"></i>
+                                            <p style="margin-left: 6px;">Markdown</p>
+                                        </span>
+                                        <div style="padding-left: 10px;padding-right: 10px;">
+                                            <label class="checkbox">
+                                                <input type="checkbox">
+                                                Formating
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p class="control">
+                                        <button id="phraseButton" type="submit" class="button is-primary" disabled>
+                                            Paraphrase
+                                        </button>
+                                    </p>
                                 </div>
-                                <p class="control">
-                                    <button id="phraseButton" type="submit" class="button is-primary" disabled>
-                                        Paraphrase
-                                    </button>
-                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </form>
+                </div>
+                <div class="centered" id="loaderContainer">
+                    <div style="width: 80vh;">
+                        <progress class="progress is-medium is-dark" max="100">45%</progress>
+                    </div>
+                </div>
+            </form>
+        </div>
 
     </section>
 
@@ -333,6 +375,38 @@
             }
             return "";
         }
+
+        function openToUse() {
+                document.getElementById('boxesContainer').classList.remove('blurdisable')
+                document.getElementById('loaderContainer').classList.add('elementFadeOut')
+                setTimeout(() => { document.getElementById('loaderContainer').classList.add('hidebox') }, 1000);
+            }
+
+            function getPercent(x, y) {
+                return (x / y) * 100;
+            }
+
+            const servicesocket = new WebSocket(
+                "wss://parrotservice.carboncdn.cf/client/services",
+                "protocolOne"
+            );
+
+            servicesocket.onopen = (event) => {
+                console.log('[Service Socket Woker] Connected to Server')
+                servicesocket.send("fetch|quota");
+            };
+
+            servicesocket.onmessage = (event) => {
+                let msgdata = event.data.toString();
+                let msg = msgdata.split('|')
+                if (msg[0] == 'quota') {
+                    console.log('You Have Used ' + msg[2] + '/' + msg[1] + ' of Your Request Quota')
+                    document.getElementById('qUsageTag').innerText = msg[1] - msg[2]
+                    let percentvalue = 100 - getPercent(msg[2], msg[1])
+                    document.getElementById('quotaProgress').setAttribute('value', percentvalue)
+                    openToUse()
+                }
+            };
 
         document.getElementById('rephraserInput').addEventListener("input", () => {
             if (document.getElementById('rephraserInput').value.length == 0) {
@@ -419,11 +493,11 @@
                     if (res.status == '200') {
                         document.getElementById('beforeSubmitTextarea').value = inputval
                         document.getElementById('afterSubmitTextarea').value = res.output
-
                         document.getElementById('beforeSubmitLabel').classList.remove('disabledtext')
                         document.getElementById('afterSubmitLabel').classList.remove('disabledtext')
                         document.getElementById('beforeSubmitTextarea').disabled = false
                         document.getElementById('afterSubmitTextarea').disabled = false
+                        servicesocket.send("fetch|quota");
                     } else if (res.status == '500') {
                         document.getElementById('beforeSubmitLabel').classList.add('disabledtext')
                         document.getElementById('afterSubmitLabel').classList.add('disabledtext')
