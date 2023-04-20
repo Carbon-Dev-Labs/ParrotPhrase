@@ -344,7 +344,7 @@
                     </div>
 
                     <script>
-                        let maxwords = 3000
+                        const maxwords = 3000
                         document.getElementById('rephraserInput').addEventListener('input', () => {
                             let wordcount = document.getElementById('rephraserInput').value.split(' ').length
                             document.getElementById('wordsused').innerText = maxwords - wordcount -1
