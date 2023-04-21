@@ -163,7 +163,7 @@
 
         <style>
             .blurdisable {
-                filter: blur(3px);
+                filter: blur(4px);
                 pointer-events: none;
             }
 
@@ -183,20 +183,26 @@
             }
         </style>
 
-        <div class="utilitescontainer">
             <form id="phraserForm">
-                <div class="columns blurdisable" id="boxesContainer">
+                <div class="columns">
 
                     <div class="column is-one-quarter">
                         <div class="box" style="height: 100%;padding: 0;">
 
                             <div style="padding: 6%;overflow-y: scroll;height: 26rem;">
-                                <div class="field">
+                                <div class="utilitescontainer">
+                                <div id="quotaField" class="field blurdisable">
                                     <label class="label" style="font-size: 16px;display: flex; align-items:center;">
                                         <span class="tag is-dark" id="qUsageTag">3000</span>
                                         <span style="padding-left: 6px;">Requests left</span>
                                     </label>
                                     <progress id="quotaProgress" class="progress" value="100" max="100">15%</progress>
+                                </div>
+                                <div class="centered" id="loaderContainer">
+                                    <div style="width: 30vh;">
+                                        <progress class="progress is-medium is-dark" max="100">45%</progress>
+                                    </div>
+                                </div>
                                 </div>
 
                                 <hr>
@@ -353,13 +359,7 @@
                     </script>
 
                 </div>
-                <div class="centered" id="loaderContainer">
-                    <div style="width: 80vh;">
-                        <progress class="progress is-medium is-dark" max="100">45%</progress>
-                    </div>
-                </div>
             </form>
-        </div>
 
     </section>
 
@@ -422,7 +422,7 @@
         }
 
         function openToUse() {
-            document.getElementById('boxesContainer').classList.remove('blurdisable')
+            document.getElementById('quotaField').classList.remove('blurdisable')
             document.getElementById('loaderContainer').classList.add('elementFadeOut')
             setTimeout(() => { document.getElementById('loaderContainer').classList.add('hidebox') }, 1000);
         }
