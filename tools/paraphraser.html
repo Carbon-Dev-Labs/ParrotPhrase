@@ -357,8 +357,8 @@
                                             <line x1="15" x2="3" y1="12" y2="12"></line>
                                             <line x1="17" x2="3" y1="18" y2="18"></line>
                                         </svg>
-                                        <p style="margin-left: 6px;"><span id="wordsused">3000</span>/<span
-                                                id="wordsavaliable">3000</span> Words Left</p>
+                                        <p style="margin-left: 6px;"><span id="wordsused">200</span>/<span
+                                                id="wordsavaliable">200</span> Words Left</p>
                                     </span>
                                 </div>
                                 <p class="control">
@@ -372,7 +372,7 @@
                 </div>
 
                 <script>
-                    const maxwords = 3000
+                    const maxwords = 200
                     document.getElementById('rephraserInput').addEventListener('input', () => {
                         let wordcount = document.getElementById('rephraserInput').value.split(' ').length
                         document.getElementById('wordsused').innerText = maxwords - wordcount + 1
