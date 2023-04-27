@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/tools/paraphraser.html"
+    "livePreview.defaultPreviewPath": "/tools/paraphraser.html",
+    "liveServer.settings.port": 5501
 }

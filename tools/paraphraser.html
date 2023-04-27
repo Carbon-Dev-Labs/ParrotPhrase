@@ -363,7 +363,7 @@
                                 </div>
                                 <p class="control">
                                     <button id="phraseButton" type="submit" class="button is-primary" disabled>
-                                        Paraphrase
+                                        Hold Up
                                     </button>
                                 </p>
                             </div>
@@ -427,6 +427,8 @@
     </section>
 
     <script>
+        let isUsable = false
+
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
@@ -444,9 +446,16 @@
         }
 
         function openToUse() {
+            isUsable = true
             document.getElementById('quotaField').classList.remove('blurdisable')
             document.getElementById('loaderContainer').classList.add('elementFadeOut')
             setTimeout(() => { document.getElementById('loaderContainer').classList.add('hidebox') }, 1000);
+            document.getElementById('phraseButton').innerText = 'Paraphrase'
+            if (document.getElementById('rephraserInput').value.length == 0) {
+                document.getElementById('phraseButton').disabled = true
+            } else if (document.getElementById('rephraserInput').value != "") {
+                document.getElementById('phraseButton').disabled = false
+            }
         }
 
         function getPercent(x, y) {
@@ -476,10 +485,12 @@
         };
 
         document.getElementById('rephraserInput').addEventListener("input", () => {
-            if (document.getElementById('rephraserInput').value.length == 0) {
-                document.getElementById('phraseButton').disabled = true
-            } else if (document.getElementById('rephraserInput').value != "") {
-                document.getElementById('phraseButton').disabled = false
+            if (isUsable != false) {
+                if (document.getElementById('rephraserInput').value.length == 0) {
+                    document.getElementById('phraseButton').disabled = true
+                } else if (document.getElementById('rephraserInput').value != "") {
+                    document.getElementById('phraseButton').disabled = false
+                }
             }
         });
 
